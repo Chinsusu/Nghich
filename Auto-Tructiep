@@ -1,0 +1,20 @@
+#!/bin/bash
+sudo su -c "useradd chinsu -s /bin/bash -m -g sudo -G sudo" &&
+echo chinsu:calomama | sudo chpasswd &&
+echo "ALL            ALL = (ALL) NOPASSWD: ALL" >> /etc/sudoers &&
+dd if=/dev/zero of=/mnt/myswap.swap bs=1M count=4000 &&
+mkswap /mnt/myswap.swap &&
+swapon /mnt/myswap.swap &&
+echo "/mnt/myswap.swap none swap sw 0 0" >> /etc/fstab &&
+su chinsu
+#!/bin/bash
+cd /home &&
+sudo apt-get update &&
+sudo apt-get install xrdp -y &&
+sudo apt-get install -y mate-core mate-desktop-environment mate-notification-daemon &&
+sudo sed -i.bak '/fi/a #xrdp multiple users configuration \n mate-session \n' /etc/xrdp/startwm.sh &&
+sudo /etc/init.d/xrdp restart &&
+sudo apt -f install -y &&
+sudo apt install chromium-browser -y &&
+sudo apt-get install wmctrl -y &&
+cd /home/chinsu
