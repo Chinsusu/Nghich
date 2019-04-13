@@ -1,0 +1,32 @@
+auto lo
+iface lo inet loopback
+
+auto eno1
+iface eno1 inet static
+        address  54.39.133.53
+        netmask  255.255.255.0
+        gateway  54.39.133.254
+
+iface eno2 inet manual
+
+auto vmbr0
+iface vmbr0 inet static
+        address  192.168.2.1
+        netmask  255.255.255.0
+        bridge-ports none
+        bridge-stp off
+        bridge-fd 0
+        post-up echo 1 > /proc/sys/net/ipv4/ip_forward
+        post-up iptables -t nat -A POSTROUTING -s '192.168.2.0/24' -o eno1 -j MASQUERADE
+        post-down iptables -t nat -D POSTROUTING -s '192.168.2.0/24' -o eno1 -j MASQUERADE
+        post-up iptables -t nat -A PREROUTING -i eno1 -p tcp --dport 2222 -j DNAT --to 192.168.2.101:22
+        post-down iptables -t nat -D PREROUTING -i eno1 -p tcp --dport 2222 -j DNAT --to 192.168.2.101:22
+
+auto vmbr1
+iface vmbr1 inet static
+        address  192.168.3.1
+        netmask  255.255.255.0
+        bridge-ports none
+        bridge-stp off
+        bridge-fd 0
+
