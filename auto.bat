@@ -1,1 +1,0 @@
-C:\Users\%USERNAME%\Downloads\64bit.exe
