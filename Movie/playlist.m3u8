@@ -3,7 +3,7 @@
 #EXT-X-TARGETDURATION:15
 #EXT-X-MEDIA-SEQUENCE:0
 #EXTINF:11.971089,
-https://drive.google.com/uc?id=11vGsn9Ig43nbf0LkCnEJTUjzu37Bqnw1
+https://bypasscors.herokuapp.com/api/?https://drive.google.com/uc?id=11vGsn9Ig43nbf0LkCnEJTUjzu37Bqnw1
 #EXTINF:5.672711,
 https://drive.google.com/uc?id=16LHLUy_JHAwIf6kUarx3-omr7pdNSZ93
 #EXTINF:3.754000,
